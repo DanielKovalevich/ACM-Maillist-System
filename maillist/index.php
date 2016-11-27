@@ -85,6 +85,8 @@ header('Content-Type: text/html; charset=UTF-8');
 //Show the debug console if enabled. Heavens knows I need this.
 ulLog::ShowDebugConsole();
 
+?>
+
 <html>
   <head>
     <meta charset="UTF-8">
@@ -130,7 +132,3 @@ ulLog::ShowDebugConsole();
 </div>
 </body>
 </html>
-
-<?php
-}
-?>
