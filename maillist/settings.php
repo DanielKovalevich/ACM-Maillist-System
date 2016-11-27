@@ -1,4 +1,4 @@
-<!-- Setting page for the ACM maillist. Created by Daniel Kovalevich -->
+<!-- Setting view for the ACM maillist. Created by Daniel Kovalevich -->
 <!DOCTYPE html>
 
 <html>
