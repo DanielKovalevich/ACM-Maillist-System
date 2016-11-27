@@ -57,7 +57,9 @@ $action = @$_POST['action'];
 $ulogin = new uLogin('appLogin', 'appLoginFail');
 
 if (isAppLoggedIn()){
-  //TODO: Redirect to the secure page
+  header("Location: http://psb.acm.org/maillist/secure.php");
+  die();
+  }
 }
  else 
  {
@@ -82,15 +84,6 @@ if (isAppLoggedIn()){
 header('Content-Type: text/html; charset=UTF-8');  
 //Show the debug console if enabled. Heavens knows I need this.
 ulLog::ShowDebugConsole();
-
-if (isAppLoggedIn()){
-  //If the user is already logged in, redirect to the secure section
-  header("Location: http://psb.acm.org/maillist/secure.php");
-  die();
-  }
-
-  else{
-?>
 
 <html>
   <head>
