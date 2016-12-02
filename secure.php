@@ -89,7 +89,7 @@ if(isAppLoggedIn()){
 				<li><a href="#">Create Email</a></li>
 				<li><a href="#">View Sent Emails</a></li>
 				<li><a href="#">Manage Members</a></li>
-				<li><a href="#">Settings</a></li>
+				<li><a href="http://psb.acm.org/maillist/settings.php">Settings</a></li>
 			</ul>
 		</div>
 		<div class="col-md-10 content">
