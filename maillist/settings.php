@@ -63,7 +63,7 @@
                     Settings
                 </div>
                 <div class="panel-body">
-                    <form action="settings_controller.php" method="post">
+                    <form action="/assets/settings_controller.php" method="post">
                       <fieldset>
                         <div class="form-group">
                           <h3>Current Admin Username</h3>
