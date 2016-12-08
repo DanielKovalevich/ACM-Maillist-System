@@ -21,6 +21,28 @@ class processMySQL
 		$stmt->execute();
 	}
 
+	function getEmailAddressesByMajor($major)
+	{
+
+		$db = new PDO(ML_PDO_CON_STRING, ML_PDO_USERNAME, ML_PDO_PASSWORD);
+
+		//If we get a string of 'everyone' as the parameter, do a different query
+		if($major == 'everyone') {
+			$sth = $db_prepare("SELECT email from users");
+		}
+
+		else {
+			$sth = $db->prepare("SELECT email FROM users WHERE major = :major");
+			$sth->bindValue(':major', $major, PDO::PARAM_STR);
+		}
+
+		$sth->execute();
+
+		$result = $sth->fetchAll(PDO::FETCH_COLUMN, 0);
+
+		return $result;
+	}
+
 	function countUsersByMajor($major)
 	{
 

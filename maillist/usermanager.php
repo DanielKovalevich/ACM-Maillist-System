@@ -1,29 +1,19 @@
 <?php
-//Create Mail page for the ACM Maillist system
-//Written by Conrad Weiser - 12/07/2016
 
-//Enable errors
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+//Table view for registered users - ACM mailList
+//Written by Conrad Weiser - 11/30/2016
 
 require_once('ulogin/config/all.inc.php');
 require_once('ulogin/main.inc.php');
 
 //Start a secure connection if one is not already running
-if (!sses_running())
+if (!sses_running()){
   sses_start();
-
-//If we're logged in, display the page contents.
-
-function isAppLoggedIn(){
-  return isset($_SESSION['uid']) && isset($_SESSION['username']) && isset($_SESSION['loggedIn']) && ($_SESSION['loggedIn']===true);
 }
 
-if (isAppLoggedIn()){
-
+//Display protected content
+if(isAppLoggedIn()){
 	?>
-
 
 <html>
   <head>
@@ -33,16 +23,13 @@ if (isAppLoggedIn()){
       <meta name="description" content="">
       <meta name="author" content="">
       <link rel="icon" href="../../favicon.ico">
-      <title>Create Mail</title>
+      <title>User Manager</title>
 
       <link href="css/bootstrap.min.css" rel="stylesheet">
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
       <!--Custom styles for this sheet!-->
       <link href="css/protected.css" rel="stylesheet">
-
-      <!--Include the editor javascript-->
-      <script src="assets/ckeditor/ckeditor.js"></script>
-
   </head>
   <body>
   <nav class="navbar navbar-default navbar-static-top">
@@ -78,43 +65,21 @@ if (isAppLoggedIn()){
 	<div class="container-fluid main-container">
 		<div class="col-md-2 sidebar">
 			<ul class="nav nav-pills nav-stacked">
-				<li class="active"><a href="#">Home</a></li>
+				<li><a href="#">Home</a></li>
 				<li><a href="#">Create Email</a></li>
 				<li><a href="#">View Sent Emails</a></li>
-				<li><a href="#">Manage Members</a></li>
-				<li><a href="http://psb.acm.org/maillist/settings.php">Settings</a></li>
+				<li class="active"><a href="#">Manage Members</a></li>
+				<li><a href="#">Settings</a></li>
 			</ul>
 		</div>
 		<div class="col-md-10 content">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Dashboard
+                    User Manager
                 </div>
                 <div class="panel-body">
-                    <!-- Body content here --> 
-                    <form accept-charset="UTF-8" role="form" action="assets/sendmail.php" method="POST">
-                    	Mail To:<br>
-                    	<select name="target">
-                        <option value="everyone">ALL MEMBERS</option>
-                        <option value="Computer Engineer">Computer Engineers</options>
-                        <option value="Computer Science">Computer Scientists</option>
-                        <option value="Software Engineer">Software Engineers</option>
-                        <option value="Undecided">Undecided</option>
-                      </select>
-
-                    	<br><br><br>
-
-                      <textarea name="ckeditor" id="ckeditor" rows="10" cols="80">
-                          <!--This is the textarea which is replaced by the script following these lines-->
-                      </textarea>
-
-                      <br><br><br>
-
-                      <input type="submit" value="Submit">
-                      <script>
-                        CKEDITOR.replace( 'ckeditor' );
-                      </script>
-                    </form>
+                    <!-- Page contents for the tables here -->
+                    <!-- I'm thinking about using this! http://bootsnipp.com/snippets/featured/bootstrap-snipp-for-datatable !-->
                 </div>
             </div>
 		</div>
@@ -125,17 +90,5 @@ if (isAppLoggedIn()){
 			</p>
 		</footer>
 	</div>
-</body>
+	</body>
 </html>
-
-
-<?php
-}
-else {
-?>
-
-<img src="http://memecrunch.com/meme/11CRJ/you-better-get-outta-here-cowboy/image.png">
-
-<?php
-}
-?>
