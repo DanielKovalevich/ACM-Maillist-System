@@ -78,8 +78,8 @@ if (isAppLoggedIn()){
 	<div class="container-fluid main-container">
 		<div class="col-md-2 sidebar">
 			<ul class="nav nav-pills nav-stacked">
-				<li class="active"><a href="#">Home</a></li>
-				<li><a href="#">Create Email</a></li>
+				<li><a href="http://psb.acm.org/maillist/secure.php">Home</a></li>
+				<li class="active"><a href="#">Create Email</a></li>
 				<li><a href="#">View Sent Emails</a></li>
 				<li><a href="#">Manage Members</a></li>
 				<li><a href="http://psb.acm.org/maillist/settings.php">Settings</a></li>
@@ -92,15 +92,22 @@ if (isAppLoggedIn()){
                 </div>
                 <div class="panel-body">
                     <!-- Body content here --> 
-                    <form accept-charset="UTF-8" role="form" action="assets/sendmail.php" method="POST">
-                    	Mail To:<br>
-                    	<select name="target">
-                        <option value="everyone">ALL MEMBERS</option>
-                        <option value="Computer Engineer">Computer Engineers</options>
-                        <option value="Computer Science">Computer Scientists</option>
-                        <option value="Software Engineer">Software Engineers</option>
-                        <option value="Undecided">Undecided</option>
-                      </select>
+                    <br><br>
+
+                    <form accept-charset="UTF-8" role="form" action="assets/sendmail.php" method="POST" class="form-horizontal">
+                    	
+                      <div class="form-group">
+                        <label class="col-md-4 control-label" for="target">Mail To</label>
+                        <div class="col-md-4">
+                          <select id="target" name="target" class="form-control">
+                            <option value="everyone">ALL MEMBERS</option>
+                            <option value="Computer Engineer">Computer Engineers</option>
+                            <option value="Computer Science">Computer Scientists</option>
+                            <option value="Software Engineer">Software Engineers</option>
+                            <option value="Undecided">Undecided</option>
+                          </select>
+                        </div>
+                      </div>
 
                     	<br><br><br>
 
