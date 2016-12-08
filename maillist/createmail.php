@@ -1,39 +1,23 @@
 <?php
-//Protected page for the ACM mailList
-//Written by Conrad Weiser - 11/10/2016
+//Create Mail page for the ACM Maillist system
+//Written by Conrad Weiser - 12/07/2016
+
+//Enable errors
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-
 require_once('ulogin/config/all.inc.php');
 require_once('ulogin/main.inc.php');
-require_once('assets/mysqlclass.php');
-
 
 //Start a secure connection if one is not already running
-if (!sses_running()){
+if (!sses_running())
   sses_start();
-}
 
-function isAppLoggedIn(){
-	return isset($_SESSION['uid']) && isset($_SESSION['username']) && isset($_SESSION['loggedIn']) && ($_SESSION['loggedIn']===true);
-}
+//If we're logged in, display the page contents.
 
-function loginFailed($uid,$pwd,$ulogin) {
-	echo 'You should not be here right now. Try logging in first.';
-}
+if (isAppLoggedIn()){
 
-$ul = new uLogin('loginSuccessful', 'loginFailed');
-
-//Only run the registration if the form has been submitted. CHeck this variable to verify that.
-$action = @$_POST['submit'];
-
-//Instance the SQL class
-$mysql = new ProcessMySQL;
-
-//Display protected content
-if(isAppLoggedIn()){
 	?>
 
 <html>
@@ -44,7 +28,7 @@ if(isAppLoggedIn()){
       <meta name="description" content="">
       <meta name="author" content="">
       <link rel="icon" href="../../favicon.ico">
-      <title>Mail </title>
+      <title>Create Mail</title>
 
       <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -63,7 +47,7 @@ if(isAppLoggedIn()){
 				<span class="icon-bar"></span>
 			</button>
 			<a class="navbar-brand" href="#">
-				ACM Mail System
+				Brand
 			</a>
 		</div>
 
@@ -76,8 +60,20 @@ if(isAppLoggedIn()){
 				<button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
 			</form>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="http://psb.acm.org" target="_blank">Visit Site</a></li>
-
+				<li><a href="http://www.pingpong-labs.com" target="_blank">Visit Site</a></li>
+				<li class="dropdown ">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+						Account
+						<span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li class="dropdown-header">SETTINGS</li>
+							<li class=""><a href="#">Other Link</a></li>
+							<li class=""><a href="#">Other Link</a></li>
+							<li class=""><a href="#">Other Link</a></li>
+							<li class="divider"></li>
+							<li><a href="#">Logout</a></li>
+						</ul>
+					</li>
 				</ul>
 			</div><!-- /.navbar-collapse -->
 		</div><!-- /.container-fluid -->
@@ -86,10 +82,10 @@ if(isAppLoggedIn()){
 		<div class="col-md-2 sidebar">
 			<ul class="nav nav-pills nav-stacked">
 				<li class="active"><a href="#">Home</a></li>
-				<li><a href="#">Create Email</a></li>
-				<li><a href="#">View Sent Emails</a></li>
-				<li><a href="#">Manage Members</a></li>
-				<li><a href="http://psb.acm.org/maillist/settings.php">Settings</a></li>
+				<li><a href="#">Link</a></li>
+				<li><a href="#">Link</a></li>
+				<li><a href="#">Link</a></li>
+				<li><a href="#">Link</a></li>
 			</ul>
 		</div>
 		<div class="col-md-10 content">
@@ -98,16 +94,19 @@ if(isAppLoggedIn()){
                     Dashboard
                 </div>
                 <div class="panel-body">
-                    <p>Computer Engineers Enrolled: <?php echo $mysql->countUsersByMajor('Computer Engineering'); ?> </p>
-                    <p>Software Engineers Enrolled: <?php echo $mysql->countUsersByMajor('Software Engineering'); ?> </p>
-                    <p>Compuer Scientists Enrolled: <?php echo $mysql->countUsersByMajor('Computer Science'); ?> </p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    			    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+				quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+				consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+				cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+				proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                 </div>
             </div>
 		</div>
 		<footer class="pull-left footer">
 			<p class="col-md-12">
 				<hr class="divider">
-				Bootsnip Copyright &COPY; 2015 Gravitano | Designed for Behrend ACM by Conrad Weiser</a>
+				Copyright &COPY; 2015 <a href="http://www.pingpong-labs.com">Gravitano</a>
 			</p>
 		</footer>
 	</div>
