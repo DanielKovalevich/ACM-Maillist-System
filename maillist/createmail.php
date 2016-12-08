@@ -20,6 +20,7 @@ if (isAppLoggedIn()){
 
 	?>
 
+
 <html>
   <head>
     <meta charset="UTF-8">
@@ -34,6 +35,26 @@ if (isAppLoggedIn()){
 
       <!--Custom styles for this sheet!-->
       <link href="css/protected.css" rel="stylesheet">
+
+      <!--Include Font Awesome -->
+ 	  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+
+      <!--Include the WYSIWYG editor-->
+      <!--https://www.froala.com/wysiwyg-editor-->
+      <link rel="stylesheet" href="assets/froala/css/plugins/char_counter.css">
+ 	  <link rel="stylesheet" href="assets/froala/css/plugins/code_view.css">
+ 	  <link rel="stylesheet" href="assets/froala/css/plugins/colors.css">
+  	  <link rel="stylesheet" href="assets/froala/css/plugins/emoticons.css">
+  	  <link rel="stylesheet" href="assets/froala/css/plugins/file.css">
+  	  <link rel="stylesheet" href="assets/froala/css/plugins/fullscreen.css">
+  	  <link rel="stylesheet" href="assets/froala/css/plugins/image.css">
+  	  <link rel="stylesheet" href="assets/froala/css/plugins/image_manager.css">
+  	  <link rel="stylesheet" href="assets/froala/css/plugins/line_breaker.css">
+  	  <link rel="stylesheet" href="assets/froala/css/plugins/quick_insert.css">
+  	  <link rel="stylesheet" href="assets/froala/css/plugins/table.css">
+
+
   </head>
   <body>
   <nav class="navbar navbar-default navbar-static-top">
@@ -47,7 +68,7 @@ if (isAppLoggedIn()){
 				<span class="icon-bar"></span>
 			</button>
 			<a class="navbar-brand" href="#">
-				Brand
+				ACM Mail System
 			</a>
 		</div>
 
@@ -60,20 +81,8 @@ if (isAppLoggedIn()){
 				<button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
 			</form>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="http://www.pingpong-labs.com" target="_blank">Visit Site</a></li>
-				<li class="dropdown ">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-						Account
-						<span class="caret"></span></a>
-						<ul class="dropdown-menu" role="menu">
-							<li class="dropdown-header">SETTINGS</li>
-							<li class=""><a href="#">Other Link</a></li>
-							<li class=""><a href="#">Other Link</a></li>
-							<li class=""><a href="#">Other Link</a></li>
-							<li class="divider"></li>
-							<li><a href="#">Logout</a></li>
-						</ul>
-					</li>
+				<li><a href="http://psb.acm.org" target="_blank">Visit Site</a></li>
+
 				</ul>
 			</div><!-- /.navbar-collapse -->
 		</div><!-- /.container-fluid -->
@@ -82,10 +91,10 @@ if (isAppLoggedIn()){
 		<div class="col-md-2 sidebar">
 			<ul class="nav nav-pills nav-stacked">
 				<li class="active"><a href="#">Home</a></li>
-				<li><a href="#">Link</a></li>
-				<li><a href="#">Link</a></li>
-				<li><a href="#">Link</a></li>
-				<li><a href="#">Link</a></li>
+				<li><a href="#">Create Email</a></li>
+				<li><a href="#">View Sent Emails</a></li>
+				<li><a href="#">Manage Members</a></li>
+				<li><a href="http://psb.acm.org/maillist/settings.php">Settings</a></li>
 			</ul>
 		</div>
 		<div class="col-md-10 content">
@@ -94,22 +103,79 @@ if (isAppLoggedIn()){
                     Dashboard
                 </div>
                 <div class="panel-body">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    			    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-				quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-				consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-				cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-				proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    <!-- Body content here --> 
+                    <form>
+                    	Mail To:<br>
+                    	<input type="radio" name="target" value="Everyone"> ALL<br>
+                    	<input type="radio" name="target" value="Software Engineer"> Software Engineers<br>
+                    	<input type="radio" name="target" value="Computer Science"> Computer Scientists<br>
+                    	<input type="radio" name="target" value="Computer Engineer"> Computer Engineers<br>
+                    	<br>
+
+                    	<!--The textbox editor-->
+                    	<textarea id="edit" name="content"></textarea>
+
+
+                    	
                 </div>
             </div>
 		</div>
 		<footer class="pull-left footer">
 			<p class="col-md-12">
 				<hr class="divider">
-				Copyright &COPY; 2015 <a href="http://www.pingpong-labs.com">Gravitano</a>
+				Bootsnip Copyright &COPY; 2015 Gravitano | Designed for Behrend ACM by Conrad Weiser</a>
 			</p>
 		</footer>
 	</div>
+
+	<!-- Include all of the Javascript at the end of the file so it doesn't slow everything down-->
+
+	<!-- Include jQuery. -->
+  	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+  	<!-- Include Code Mirror. -->
+  	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.js"></script>
+  	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/mode/xml/xml.min.js"></script>
+
+  	<!-- Include Plugins. -->
+	<script type="text/javascript" src="assets/froala/js/plugins/align.min.js"></script>
+  	<script type="text/javascript" src="assets/froala/js/plugins/char_counter.min.js"></script>
+  	<script type="text/javascript" src="assets/froala/js/plugins/code_beautifier.min.js"></script>
+  	<script type="text/javascript" src="assets/froala/js/plugins/code_view.min.js"></script>
+  	<script type="text/javascript" src="assets/froala/js/plugins/colors.min.js"></script>
+  	<script type="text/javascript" src="assets/froala/js/plugins/emoticons.min.js"></script>
+  	<script type="text/javascript" src="assets/froala/js/plugins/entities.min.js"></script>
+  	<script type="text/javascript" src="assets/froala/js/plugins/file.min.js"></script>
+  	<script type="text/javascript" src="assets/froala/js/plugins/font_family.min.js"></script>
+  	<script type="text/javascript" src="assets/froala/js/plugins/font_size.min.js"></script>
+  	<script type="text/javascript" src="assets/froala/js/plugins/fullscreen.min.js"></script>
+  	<script type="text/javascript" src="assets/froala/js/plugins/image.min.js"></script>
+  	<script type="text/javascript" src="assets/froala/js/plugins/image_manager.min.js"></script>
+  	<script type="text/javascript" src="assets/froala/js/plugins/inline_style.min.js"></script>
+  	<script type="text/javascript" src="assets/froala/js/plugins/line_breaker.min.js"></script>
+  	<script type="text/javascript" src="assets/froala/js/plugins/link.min.js"></script>
+  	<script type="text/javascript" src="assets/froala/js/plugins/lists.min.js"></script>
+  	<script type="text/javascript" src="assets/froala/js/plugins/paragraph_format.min.js"></script>
+  	<script type="text/javascript" src="assets/froala/js/plugins/paragraph_style.min.js"></script>
+  	<script type="text/javascript" src="assets/froala/js/plugins/quick_insert.min.js"></script>
+  	<script type="text/javascript" src="assets/froala/js/plugins/quote.min.js"></script>
+  	<script type="text/javascript" src="assets/froala/js/plugins/table.min.js"></script>
+  	<script type="text/javascript" src="assets/froala/js/plugins/save.min.js"></script>
+  	<script type="text/javascript" src="assets/froala/js/plugins/url.min.js"></script>
+
+  	<!--Include the language file we want to use -->
+  	<script type="text/javascript" src="assets/froala/js/languages/en_ca.js"></script>
+
+  	<!--Initialize the editor. -->
+  	<script>
+  		$(function() {
+  			$('#edit').froalaEditor()
+  		});
+  	</script>
+  		})
+
+
+
 	</body>
 </html>
 
