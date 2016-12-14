@@ -66,6 +66,32 @@ class processMySQL
 			return "Error: Not provided with a major";
 		}
 	}
+
+	function getCurrentSettings($database)
+	{
+		if ($database == "settings")
+		{
+			$db = new PDO(ML_PDO_CON_STRING, ML_PDO_USERNAME, ML_PDO_PASSWORD);
+			$settings = $db->prepare("SELECT * FROM settings");
+			$settings->execute();
+			$settings = $settings->fetchAll(PDO::FETCH_COLUMN, 0);
+
+			return $settings;
+		}
+		else if ($database == "ulog")
+		{
+			$login_db = new PDO(ULOGIN_PDO_CON_STRING, UL_PDO_USERNAME, UL_PDO_PASSWORD);
+			$login_info = $login_db->prepare("SELECT username, password FROM ul_logins");
+			$login_info->execute();
+			$login_info = $login_info->fetchAll(PDO::FETCH_COLUMN, 0);
+
+			return $login_info;
+		}
+		else
+		{
+			print("You shouldn't be here. You're a moron!");
+		}
+	}
 }
 
 ?>

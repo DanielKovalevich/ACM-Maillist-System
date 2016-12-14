@@ -1,3 +1,9 @@
+
+<?php 
+  require_once ("assets/mysqlclass.php"); 
+  //Instance the SQL class
+  $mysql = new ProcessMySQL;
+?>
 <!-- Setting view for the ACM maillist. Created by Daniel Kovalevich -->
 <!DOCTYPE html>
 
@@ -50,7 +56,7 @@
   <div class="container-fluid main-container">
     <div class="col-md-2 sidebar">
       <ul class="nav nav-pills nav-stacked">
-        <li class="active"><a href="#">Home</a></li>
+        <li class="active"><a href="http://psb.acm.org/maillist/secure.php">Home</a></li>
         <li><a href="#">Create Email</a></li>
         <li><a href="#">View Sent Emails</a></li>
         <li><a href="#">Manage Members</a></li>
@@ -67,13 +73,18 @@
                       <fieldset>
                         <div class="form-group">
                           <h3>Current Admin Username</h3>
-                          <h4><?php echo "$_SESSION["admin"]" ?></h4>
+                          <h4>
+                            <?php 
+                              $settings = $mysql->getCurrentSettings("settings"); 
+                              echo $settings["email"];
+                            ?>
+                          </h4>
                         </div>
                         <div class="form-group">
                           <input autocomplete="off" autofocus class="form-control" name="pswd" placeholder="Password" type="password"/>
                         </div>
                         <div class="form-group">
-                          <input autocomplete="off" name="confirm" placeholder="Comfirm" type="password"/>
+                          <input autocomplete="off" autofocus class="form-control" name="confirm" placeholder="Comfirm" type="password"/>
                         </div>
                         <div class="form-group">
                           <button class="btn btn-default" type="submit">
@@ -89,7 +100,7 @@
     <footer class="pull-left footer">
       <p class="col-md-12">
         <hr class="divider">
-        Bootsnip Copyright &COPY; 2015 Gravitano | Designed for Behrend ACM by Conrad Weiser</a>
+        Bootsnip Copyright &COPY; 2015 Gravitano | Designed for Behrend ACM by Conrad Weiser and Dan the Unknown</a>
       </p>
     </footer>
   </div>
