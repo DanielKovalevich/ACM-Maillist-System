@@ -1,29 +1,34 @@
 <?php
-//Create Mail page for the ACM Maillist system
-//Written by Conrad Weiser - 12/07/2016
-
-//Enable errors
+//TEMPLATE PAGE
+//Written by Conrad Weiser - 11/10/2016
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+
 require_once('ulogin/config/all.inc.php');
 require_once('ulogin/main.inc.php');
+require_once('assets/mysqlclass.php');
+
 
 //Start a secure connection if one is not already running
-if (!sses_running())
+if (!sses_running()){
   sses_start();
-
-//If we're logged in, display the page contents.
-
-function isAppLoggedIn(){
-  return isset($_SESSION['uid']) && isset($_SESSION['username']) && isset($_SESSION['loggedIn']) && ($_SESSION['loggedIn']===true);
 }
 
-if (isAppLoggedIn()){
+function isAppLoggedIn(){
+	return isset($_SESSION['uid']) && isset($_SESSION['username']) && isset($_SESSION['loggedIn']) && ($_SESSION['loggedIn']===true);
+}
 
+$ul = new uLogin('loginSuccessful', 'loginFailed');
+
+
+//Instance the SQL class
+$mysql = new ProcessMySQL;
+
+//Display protected content
+if(isAppLoggedIn()){
 	?>
-
 
 <html>
   <head>
@@ -33,16 +38,12 @@ if (isAppLoggedIn()){
       <meta name="description" content="">
       <meta name="author" content="">
       <link rel="icon" href="../../favicon.ico">
-      <title>Create Mail</title>
+      <title>Mail </title>
 
       <link href="css/bootstrap.min.css" rel="stylesheet">
 
       <!--Custom styles for this sheet!-->
       <link href="css/protected.css" rel="stylesheet">
-
-      <!--Include the editor javascript-->
-      <script src="assets/ckeditor/ckeditor.js"></script>
-
   </head>
   <body>
   <nav class="navbar navbar-default navbar-static-top">
@@ -78,8 +79,8 @@ if (isAppLoggedIn()){
 	<div class="container-fluid main-container">
 		<div class="col-md-2 sidebar">
 			<ul class="nav nav-pills nav-stacked">
-				<li><a href="http://psb.acm.org/maillist/secure.php">Home</a></li>
-				<li class="active"><a href="#">Create Email</a></li>
+				<li class="active"><a href="#">Home</a></li>
+				<li><a href="http://psb.acm.org/maillist/createmail.php">Create Email</a></li>
 				<li><a href="#">View Sent Emails</a></li>
 				<li><a href="#">Manage Members</a></li>
 				<li><a href="http://psb.acm.org/maillist/settings.php">Settings</a></li>
@@ -91,45 +92,7 @@ if (isAppLoggedIn()){
                     Dashboard
                 </div>
                 <div class="panel-body">
-                    <!-- Body content here --> 
-                    <br><br>
-
-                    <form accept-charset="UTF-8" role="form" action="assets/sendmail.php" method="POST" class="form-horizontal">
-                    	
-                      <div class="form-group">
-                        <label class="col-md-4 control-label" for="target">Mail To</label
->                        <div class="col-md-4">
-                          <select id="target" name="target" class="form-control">
-                            <option value="everyone">ALL MEMBERS</option>
-                            <option value="Computer Engineering">Computer Engineering</option>
-                            <option value="Computer Science">Computer Science</option>
-                            <option value="Software Engineering">Software Engineering</option>
-                            <option value="Undecided">Undecided</option>
-                          </select>
-                        </div>
-                      </div>
-
-                      <br><br>
-
-                      <div class="form-group">
-                       <label class="col-md-4 control-label" for="subject">Email Subject</label>  
-                       <div class="col-md-8">
-                        <input id="subject" name="subject" type="text" placeholder="Subject" class="form-control input-md" required="">
-                        </div>
-                      </div>
-                    	<br><br><br>
-
-                      <textarea name="ckeditor" id="ckeditor" rows="10" cols="80">
-                          
-                      </textarea>
-
-                      <br><br><br>
-
-                      <input type="submit" value="Submit">
-                      <script>
-                        CKEDITOR.replace( 'ckeditor' );
-                      </script>
-                    </form>
+                    <!--The body content goes here-->
                 </div>
             </div>
 		</div>
@@ -140,7 +103,7 @@ if (isAppLoggedIn()){
 			</p>
 		</footer>
 	</div>
-</body>
+	</body>
 </html>
 
 

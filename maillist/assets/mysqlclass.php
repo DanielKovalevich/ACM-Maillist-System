@@ -7,6 +7,19 @@ class processMySQL
 
 	//TODO: Make SQL connections persist instead of creating a new one every function call.
 
+	function saveEmailToHistory($target, $subject, $content)
+	{
+		$db = new PDO(ML_PDO_CON_STRING, ML_PDO_USERNAME, ML_PDO_PASSWORD);
+
+		$stmt = $db->prepare("INSERT INTO sent_emails (send_date, target, subject, content) VALUES (now(), :target, :subject, :content)");
+
+		$stmt->bindParam(':target', $target);
+		$stmt->bindParam(':subject', $subject);
+		$stmt->bindParam(':content', $content);
+
+		$stmt->execute();
+	}
+
 	function processNewUser($name,$email,$major,$gratuateDate)
 	{
 		$db = new PDO(ML_PDO_CON_STRING, ML_PDO_USERNAME, ML_PDO_PASSWORD);
@@ -21,6 +34,7 @@ class processMySQL
 		$stmt->execute();
 	}
 
+
 	function getEmailAddressesByMajor($major)
 	{
 
@@ -28,7 +42,7 @@ class processMySQL
 
 		//If we get a string of 'everyone' as the parameter, do a different query
 		if($major == 'everyone') {
-			$sth = $db_prepare("SELECT email from users");
+			$sth = $db->prepare("SELECT email from users");
 		}
 
 		else {
