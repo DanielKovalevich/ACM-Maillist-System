@@ -73,10 +73,45 @@
                       <fieldset>
                         <div class="form-group">
                           <h4>
-                          Current Admin Username: 
+                          Admin Username: 
                             <?php 
                               $settings = $mysql->getCurrentSettings("settings"); 
                               echo $settings["email"];
+                            ?>
+                          </h4>
+                          <h4>
+                          SMTP Username: 
+                            <?php 
+                              $settings = $mysql->getCurrentSettings("settings"); 
+                              echo $settings["SMTP_username"];
+                            ?>
+                          </h4>
+                          <h4>
+                          SMTP Server: 
+                            <?php 
+                              $settings = $mysql->getCurrentSettings("settings"); 
+                              echo $settings["SMTP_server"];
+                            ?>
+                          </h4>
+                          <h4>
+                          IMAP Port: 
+                            <?php 
+                              $settings = $mysql->getCurrentSettings("settings"); 
+                              echo $settings["IMAP_port"];
+                            ?>
+                          </h4>
+                          <h4>
+                          POP3 Port: 
+                            <?php 
+                              $settings = $mysql->getCurrentSettings("settings"); 
+                              echo $settings["POP3_port"];
+                            ?>
+                          </h4>
+                          <h4>
+                          SMTP Port: 
+                            <?php 
+                              $settings = $mysql->getCurrentSettings("settings"); 
+                              echo $settings["SMTP_port"];
                             ?>
                           </h4>
                         </div>
@@ -86,6 +121,13 @@
                         <div class="form-group">
                           <input autocomplete="off" autofocus class="form-control" name="confirm" placeholder="Comfirm" type="password"/>
                         </div>
+                        <h4>
+                          Maillist Username: 
+                            <?php 
+                              $settings = $mysql->getCurrentSettings("ulog"); 
+                              echo $settings["username"];
+                            ?>
+                          </h4>
                         <div class="form-group">
                           <button class="btn btn-default" type="submit">
                           <span aria-hidden="true" class="glyphicon glyphicon-log-in"></span>
