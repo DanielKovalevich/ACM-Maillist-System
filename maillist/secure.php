@@ -107,7 +107,7 @@ if(isAppLoggedIn()){
 		<footer class="pull-left footer">
 			<p class="col-md-12">
 				<hr class="divider">
-				Bootsnip Copyright &COPY; 2015 Gravitano | Designed for Behrend ACM by Conrad Weiser</a>
+				Bootsnip Copyright &COPY; 2015 Gravitano | Designed for Behrend ACM by Conrad Weiser and Daniel Kovalevich</a>
 			</p>
 		</footer>
 	</div>

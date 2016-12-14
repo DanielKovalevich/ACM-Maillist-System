@@ -56,11 +56,11 @@
   <div class="container-fluid main-container">
     <div class="col-md-2 sidebar">
       <ul class="nav nav-pills nav-stacked">
-        <li class="active"><a href="http://psb.acm.org/maillist/secure.php">Home</a></li>
+        <li><a href="http://psb.acm.org/maillist/secure.php">Home</a></li>
         <li><a href="#">Create Email</a></li>
         <li><a href="#">View Sent Emails</a></li>
         <li><a href="#">Manage Members</a></li>
-        <li><a href="http://psb.acm.org/maillist/settings.php">Settings</a></li>
+        <li class="active"><a href="http://psb.acm.org/maillist/settings.php">Settings</a></li>
       </ul>
     </div>
     <div class="col-md-10 content">
@@ -72,8 +72,8 @@
                     <form action="assets/settings_controller.php" method="post">
                       <fieldset>
                         <div class="form-group">
-                          <h3>Current Admin Username</h3>
                           <h4>
+                          Current Admin Username: 
                             <?php 
                               $settings = $mysql->getCurrentSettings("settings"); 
                               echo $settings["email"];
@@ -100,7 +100,7 @@
     <footer class="pull-left footer">
       <p class="col-md-12">
         <hr class="divider">
-        Bootsnip Copyright &COPY; 2015 Gravitano | Designed for Behrend ACM by Conrad Weiser and Dan the Unknown</a>
+        Bootsnip Copyright &COPY; 2015 Gravitano | Designed for Behrend ACM by Conrad Weiser and Daniel Kovalevich</a>
       </p>
     </footer>
   </div>

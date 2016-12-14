@@ -88,7 +88,8 @@ class processMySQL
 			$db = new PDO(ML_PDO_CON_STRING, ML_PDO_USERNAME, ML_PDO_PASSWORD);
 			$settings = $db->prepare("SELECT * FROM settings");
 			$settings->execute();
-			$settings = $settings->fetchAll(PDO::FETCH_COLUMN, 0);
+			$settings = $settings->fetchAll();
+			$settings = $settings["0"];
 
 			return $settings;
 		}
@@ -97,7 +98,8 @@ class processMySQL
 			$login_db = new PDO(ULOGIN_PDO_CON_STRING, UL_PDO_USERNAME, UL_PDO_PASSWORD);
 			$login_info = $login_db->prepare("SELECT username, password FROM ul_logins");
 			$login_info->execute();
-			$login_info = $login_info->fetchAll(PDO::FETCH_COLUMN, 0);
+			$login_info = $login_info->fetchAll();
+			$login_info = $login_info["0"];
 
 			return $login_info;
 		}
