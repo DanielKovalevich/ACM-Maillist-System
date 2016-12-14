@@ -63,11 +63,11 @@
                     Settings
                 </div>
                 <div class="panel-body">
-                    <form action="/assets/settings_controller.php" method="post">
+                    <form action="assets/settings_controller.php" method="post">
                       <fieldset>
                         <div class="form-group">
                           <h3>Current Admin Username</h3>
-                          <h4><?= echo $_SESSION["admin"] ?></h4>
+                          <h4><?php echo "$_SESSION["admin"]" ?></h4>
                         </div>
                         <div class="form-group">
                           <input autocomplete="off" autofocus class="form-control" name="pswd" placeholder="Password" type="password"/>
