@@ -95,7 +95,7 @@ class processMySQL
 		}
 		else if ($database == "ulog")
 		{
-			$login_db = new PDO(ULOGIN_PDO_CON_STRING, UL_PDO_USERNAME, UL_PDO_PASSWORD);
+			$login_db = new PDO('mysql:host=127.0.0.1;dbname=psbhosti_ulogin', 'psbhosti_ulogin', 'cR1_}LPyFo.9');
 			$login_info = $login_db->prepare("SELECT username, password FROM ul_logins");
 			$login_info->execute();
 			$login_info = $login_info->fetchAll();
