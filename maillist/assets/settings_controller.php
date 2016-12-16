@@ -7,15 +7,6 @@
 
     // if user reached page via GET (as by clicking a link or via redirect)
     if ($_SERVER["REQUEST_METHOD"] == "GET") {
-      // Allow us to display current settings in the view
-      //$_SESSION["admin"] = $settings["email"];
-      //$_SESSION["SMTPuser"] = $settings["SMTP_username"];
-      //$_SESSION["SMTPserver"] = $settings["SMTP_server"];
-      //$_SESSION["IMAP"] = $settings["IMAP_port"];
-      //$_SESSION["POP3"] = $settings["POP3_port"];
-      //$_SESSION["SMTP"] = $settings["SMTP_port"];
-      //$_SESSION["username"] = $login_info["username"];
-
       header("Location: http://psb.acm.org/maillist/settings.php");
       exit();
     }
@@ -23,14 +14,28 @@
     // else if user reached page via POST (as by submitting a form via POST)
     else if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $db = new PDO(ML_PDO_CON_STRING, ML_PDO_USERNAME, ML_PDO_PASSWORD);
-      $login_db = new PDO(UL_PDO_CON_STRING, UL_PDO_USERNAME, UL_PDO_PASSWORD);
+      $login_db = new PDO('mysql:host=127.0.0.1;dbname=psbhosti_ulogin', 'psbhosti_ulogin', 'cR1_}LPyFo.9');
 
-      $settings = $db->prepare("SELECT * FROM settings");
-      $login_info = $login_db->prepare("SELECT username, password FROM ul_logins");
+      // Verify that at least one field is filled
+    if (empty($_POST['email']) && empty($_POST['SMTPuser']) && empty($_POST['SMTPserver']) && empty($_POST['IMAP']) && empty($_POST['POP3']) && empty($_POST['SMTP']) && empty($_POST['pswd']) && empty($_POST['mailUser']))
+      {
+        echo "<h1>You didn't fill any of the forms!</h1>";
+      }
+      else 
+      {
+        if (!empty($_POST['email'])){
+          $settings = $db->prepare("UPDATE settings SET email=?");
+          $settings->bindParam(1, $_POST['email']);
+          $settings->execute();
+        }
+        //$login_info = $login_db->prepare("SELECT username, password FROM ul_logins");
 
-      $settings->execute();
-      $settings = $settings->fetchAll(PDO::FETCH_COLUMN, 0);
-      $login_info->execute();
-      $login_info = $login_info->fetchAll(PDO::FETCH_COLUMN, 0);
+        
+        //$login_info->execute();
 
+
+        header("Location: http://psb.acm.org/maillist/settings.php");
+        exit();
+      }
+    }
 ?>

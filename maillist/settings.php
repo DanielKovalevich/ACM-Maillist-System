@@ -72,62 +72,92 @@
                     <form action="assets/settings_controller.php" method="post">
                       <fieldset>
                         <div class="form-group">
+                          <h3>
+                            Please only change things if you know what you are doing.
+                          </h3>
+                          <br>
                           <h4>
-                          Admin Username: 
+                            Admin Email: 
                             <?php 
                               $settings = $mysql->getCurrentSettings("settings"); 
                               echo $settings["email"];
                             ?>
                           </h4>
+                          <div class="form-group">
+                          <input autocomplete="off" autofocus class="form-control" name="email" placeholder="New Email" type="text"/>
+                          </div>
                           <h4>
-                          SMTP Username: 
+                            SMTP Username: 
                             <?php 
                               $settings = $mysql->getCurrentSettings("settings"); 
                               echo $settings["SMTP_username"];
                             ?>
                           </h4>
+                          <div class="form-group">
+                          <input autocomplete="off" autofocus class="form-control" name="SMTPuser" placeholder="New SMTP Username" type="text"/>
+                          </div>
                           <h4>
-                          SMTP Server: 
+                            SMTP Server: 
                             <?php 
                               $settings = $mysql->getCurrentSettings("settings"); 
                               echo $settings["SMTP_server"];
                             ?>
                           </h4>
+                          <div class="form-group">
+                          <input autocomplete="off" autofocus class="form-control" name="SMTPserver" placeholder="New SMTP server" type="text"/>
+                          </div>
                           <h4>
-                          IMAP Port: 
+                            IMAP Port: 
                             <?php 
                               $settings = $mysql->getCurrentSettings("settings"); 
                               echo $settings["IMAP_port"];
                             ?>
                           </h4>
+                          <div class="form-group">
+                          <input autocomplete="off" autofocus class="form-control" name="IMAP" placeholder="New IMAP Port" type="text"/>
+                          </div>
                           <h4>
-                          POP3 Port: 
+                            POP3 Port: 
                             <?php 
                               $settings = $mysql->getCurrentSettings("settings"); 
                               echo $settings["POP3_port"];
                             ?>
                           </h4>
+                          <div class="form-group">
+                          <input autocomplete="off" autofocus class="form-control" name="POP3" placeholder="New POP3 Port" type="text"/>
+                          </div>
                           <h4>
-                          SMTP Port: 
+                            SMTP Port: 
                             <?php 
                               $settings = $mysql->getCurrentSettings("settings"); 
                               echo $settings["SMTP_port"];
                             ?>
                           </h4>
-                        </div>
-                        <div class="form-group">
-                          <input autocomplete="off" autofocus class="form-control" name="pswd" placeholder="Password" type="password"/>
-                        </div>
-                        <div class="form-group">
-                          <input autocomplete="off" autofocus class="form-control" name="confirm" placeholder="Comfirm" type="password"/>
-                        </div>
-                        <h4>
-                          Maillist Username: 
-                            <?php 
-                              $settings = $mysql->getCurrentSettings("ulog"); 
-                              echo $settings["username"];
-                            ?>
+                          <div class="form-group">
+                          <input autocomplete="off" autofocus class="form-control" name="SMTP" placeholder="New SMTP Port" type="text"/>
+                          </div>
+                          <h4>
+                            Change SMTP Password
                           </h4>
+                          </div>
+                          <div class="form-group">
+                            <input autocomplete="off" autofocus class="form-control" name="pswd" placeholder="Password" type="password"/>
+                          </div>
+                          <div class="form-group">
+                            <input autocomplete="off" autofocus class="form-control" name="confirmPswd" placeholder="Comfirm" type="password"/>
+                          </div>
+                          <br>
+                          <br>
+                          <h4>
+                            Mail System Username: 
+                              <?php 
+                                $settings = $mysql->getCurrentSettings("ulog"); 
+                                echo $settings["username"];
+                              ?>
+                          </h4>
+                        <div class="form-group">
+                          <input autocomplete="off" autofocus class="form-control" name="mailUser" placeholder="New Maillist Username" type="text"/>
+                        </div>
                         <div class="form-group">
                           <button class="btn btn-default" type="submit">
                           <span aria-hidden="true" class="glyphicon glyphicon-log-in"></span>
