@@ -4,6 +4,9 @@
 
     // Holds information about databases
     include_once('PDO.inc.php');
+    // Needed to be able to change Mail System Password and Username
+    include_once ("ulogin/uLogin.inc.php"); 
+    $uLogin = new uLogin;
 
     // if user reached page via GET (as by clicking a link or via redirect)
     if ($_SERVER["REQUEST_METHOD"] == "GET") {
@@ -66,22 +69,31 @@
           }
         }
         if (!empty($_POST['mailUser'])){
-          $login_info = $login_db->prepare("UPDATE ul_logins SET username=?");
-          $login_info->bindParam(1, $_POST['mailUser']);
-          $login_info->execute();
-        }
-        if (!empty($_POST['Mailpswd'])){
-          if ($_POST['Mailpswd'] === $_POST['MailconfirmPswd'])
-          {
-            $login_info = $login_db->prepare("UPDATE ul_logins SET password=?");
-            $login_info->bindParam(1, $_POST['Mailpswd']);
-            $login_info->execute();
+          if (!empty($_POST['Mailpswd'])){
+            if ($_POST['Mailpswd'] === $_POST['MailconfirmPswd'])
+            {
+              // Creates new user from input information
+              if ( !$ulogin->CreateUser( $_POST['mailUser'],  $_POST['Mailpswd']) )
+                $msg = 'account creation failure';
+              else
+                $msg = 'account created';
+              
+              // Destroys previous user
+              if ( !$ulogin->DeleteUser( $_SESSION['uid']) )
+                $msg = 'account deletion failure';
+              else
+                $msg = 'account deleted ok';
+            }
+            else
+            {
+              echo "You entered two different passwords!";
+            }
           }
-          else
-          {
-            echo "You entered two different passwords!";
+          else {
+            echo "You need to provide a new username along with the password! (It's because of the verification framework that we are using)";
           }
         }
+        
 
         header("Location: http://psb.acm.org/maillist/settings.php");
         exit();
