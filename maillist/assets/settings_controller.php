@@ -28,11 +28,60 @@
           $settings->bindParam(1, $_POST['email']);
           $settings->execute();
         }
-        //$login_info = $login_db->prepare("SELECT username, password FROM ul_logins");
-
-        
-        //$login_info->execute();
-
+        if (!empty($_POST['SMTPuser'])){
+          $settings = $db->prepare("UPDATE settings SET SMTP_username=?");
+          $settings->bindParam(1, $_POST['SMTPuser']);
+          $settings->execute();
+        }
+        if (!empty($_POST['SMTPserver'])){
+          $settings = $db->prepare("UPDATE settings SET SMTP_server=?");
+          $settings->bindParam(1, $_POST['SMTPserver']);
+          $settings->execute();
+        }
+        if (!empty($_POST['IMAP'])){
+          $settings = $db->prepare("UPDATE settings SET IMAP_port=?");
+          $settings->bindParam(1, $_POST['IMAP']);
+          $settings->execute();
+        }
+        if (!empty($_POST['POP3'])){
+          $settings = $db->prepare("UPDATE settings SET POP3_port=?");
+          $settings->bindParam(1, $_POST['POP3']);
+          $settings->execute();
+        }
+        if (!empty($_POST['SMTP'])){
+          $settings = $db->prepare("UPDATE settings SET SMTP_port=?");
+          $settings->bindParam(1, $_POST['SMTP']);
+          $settings->execute();
+        }
+        if (!empty($_POST['SMTPpswd'])){
+          if ($_POST['SMTPpswd'] === $_POST['SMTPconfirmPswd'])
+          {
+            $settings = $db->prepare("UPDATE settings SET SMTP_password=?");
+            $settings->bindParam(1, $_POST['SMTPpswd']);
+            $settings->execute();
+          }
+          else
+          {
+            echo "You entered two different passwords!";
+          }
+        }
+        if (!empty($_POST['mailUser'])){
+          $login_info = $login_db->prepare("UPDATE ul_logins SET username=?");
+          $login_info->bindParam(1, $_POST['mailUser']);
+          $login_info->execute();
+        }
+        if (!empty($_POST['Mailpswd'])){
+          if ($_POST['Mailpswd'] === $_POST['MailconfirmPswd'])
+          {
+            $login_info = $login_db->prepare("UPDATE ul_logins SET password=?");
+            $login_info->bindParam(1, $_POST['Mailpswd']);
+            $login_info->execute();
+          }
+          else
+          {
+            echo "You entered two different passwords!";
+          }
+        }
 
         header("Location: http://psb.acm.org/maillist/settings.php");
         exit();
