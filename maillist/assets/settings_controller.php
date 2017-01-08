@@ -5,7 +5,7 @@
     // Holds information about databases
     include_once('PDO.inc.php');
     // Needed to be able to change Mail System Password and Username
-    include_once ("ulogin/uLogin.inc.php"); 
+    include_once ("/ulogin/uLogin.inc.php"); 
     $uLogin = new uLogin;
 
     // if user reached page via GET (as by clicking a link or via redirect)
