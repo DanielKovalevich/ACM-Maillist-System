@@ -161,6 +161,7 @@
                           <h4>
                             Change Mail System Password
                           </h4>
+                          </div>
                           <div class="form-group">
                             <input autocomplete="off" autofocus class="form-control" name="Mailpswd" placeholder="Password" type="password"/>
                           </div>
@@ -172,7 +173,6 @@
                               <span aria-hidden="true" class="glyphicon glyphicon-log-in"></span>
                               Change Settings
                             </button>
-                          </div>
                         </div>
                       </fieldset>
                     </form>
