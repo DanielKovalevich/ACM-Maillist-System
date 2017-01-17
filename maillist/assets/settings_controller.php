@@ -5,13 +5,24 @@
     // Holds information about databases
     include_once('PDO.inc.php');
     // Needed to be able to change Mail System Password and Username
-    include_once ("/ulogin/uLogin.inc.php"); 
+    require_once ('../ulogin/uLogin.inc.php'); 
+    require_once('../ulogin/config/all.inc.php');
+    require_once('../ulogin/main.inc.php');
     $uLogin = new uLogin;
+
+    function isAppLoggedIn(){
+      return isset($_SESSION['uid']) && isset($_SESSION['username']) && isset($_SESSION['loggedIn']) && ($_SESSION['loggedIn']===true);
+    }
 
     // if user reached page via GET (as by clicking a link or via redirect)
     if ($_SERVER["REQUEST_METHOD"] == "GET") {
-      header("Location: http://psb.acm.org/maillist/settings.php");
-      exit();
+      if (isAppLoggedIn()){
+        header("Location: http://psb.acm.org/maillist/settings.php");
+        exit();
+      }
+      else {
+        echo "<img src='http://memecrunch.com/meme/11CRJ/you-better-get-outta-here-cowboy/image.png'>";
+      }
     }
     
     // else if user reached page via POST (as by submitting a form via POST)
@@ -73,16 +84,19 @@
             if ($_POST['Mailpswd'] === $_POST['MailconfirmPswd'])
             {
               // Creates new user from input information
-              if ( !$ulogin->CreateUser( $_POST['mailUser'],  $_POST['Mailpswd']) )
+              if (!$uLogin->CreateUser( $_POST['mailUser'],  $_POST['Mailpswd']))
                 $msg = 'account creation failure';
               else
                 $msg = 'account created';
               
+              // Delete the user by SQL because the class below doesn't seem to work
+              $deleteUser = $login_db->exec("DELETE FROM ul_logins WHERE id=1");
+              
               // Destroys previous user
-              if ( !$ulogin->DeleteUser( $_SESSION['uid']) )
+              /*if (!$uLogin->DeleteUser( $_SESSION['uid']))
                 $msg = 'account deletion failure';
               else
-                $msg = 'account deleted ok';
+                $msg = 'account deleted ok';*/
             }
             else
             {
