@@ -20,17 +20,16 @@ class processMySQL
 		$stmt->execute();
 	}
 
-	function processNewUser($firstName,$lastName,$email,$major,$gratuateDate)
+	function processNewUser($name,$email,$major,$graduateDate)
 	{
 		$db = new PDO(ML_PDO_CON_STRING, ML_PDO_USERNAME, ML_PDO_PASSWORD);
 
-		$stmt = $db->prepare("INSERT INTO users (first_name, last_name, email, major, gratuation) VALUES (:firstName, :lastName, :email, :major, :gratuation)");
+		$stmt = $db->prepare("INSERT INTO users (name, email, major, graduation) VALUES (:name, :email, :major, :graduation)");
 
-		$stmt->bindParam(':firstName', $firstName);
-		$stmt->bindParam(':lastName', $lastName);
+		$stmt->bindParam(':name', $name);
 		$stmt->bindParam(':email', $email);
 		$stmt->bindParam(':major', $major);
-		$stmt->bindParam(':gratuation', $gratuateDate);
+		$stmt->bindParam(':gratuation', $graduateDate);
 
 		$stmt->execute();
 	}
@@ -66,7 +65,7 @@ class processMySQL
 
 			$db = new PDO(ML_PDO_CON_STRING, ML_PDO_USERNAME, ML_PDO_PASSWORD);
 	
-			$sth = $db->prepare("SELECT id FROM users WHERE major = :major");
+			$sth = $db->prepare("SELECT name FROM users WHERE major = :major");
 			$sth->bindValue(':major', $major, PDO::PARAM_STR);
 	
 			$sth->execute();
@@ -93,6 +92,15 @@ class processMySQL
 			$settings = $settings["0"];
 
 			return $settings;
+		}
+		else if ($database == "users") 
+		{
+			$db = new PDO(ML_PDO_CON_STRING, ML_PDO_USERNAME, ML_PDO_PASSWORD);
+			$users = $db->prepare("SELECT * FROM users ORDER BY last_name ASC");
+			$users->execute();
+			$users = $users->fetchAll();
+
+			return $users;
 		}
 		else if ($database == "ulog")
 		{

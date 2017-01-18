@@ -1,9 +1,12 @@
 <?php
 
-//Table view for registered users - ACM mailList
-//Written by Conrad Weiser and Daniel Kovalevich - 11/30/2016
-//Worked on by Daniel Kovalevich - 1/17/2017
+	//Table view for registered users - ACM mailList
+	//Written by Conrad Weiser and Daniel Kovalevich - 11/30/2016
+	//Worked on by Daniel Kovalevich - 1/17/2017
 
+	require_once('assets/mysqlclass.php');
+	$mysql = new ProcessMySQL;
+	$users = $mysql->getCurrentSettings("users");
 ?>
 <!DOCTYPE html>
 
@@ -78,67 +81,32 @@
         				<div class="table-responsive">
 							<table id="mytable" class="table table-bordred table-striped">
 								<thead>
-								<th><input type="checkbox" id="checkall" /></th>
-								<th>First Name</th>
+									<th><input type="checkbox" id="checkall" /></th>
 									<th>Last Name</th>
-									<th>Address</th>
+									<th>First Name</th>
 									<th>Email</th>
-									<th>Contact</th>
+									<th>Major</th>
+									<th>Graduation</th>
 									<th>Edit</th>
-									
 									<th>Delete</th>
 								</thead>
 								<tbody>
-								<tr>
-									<td><input type="checkbox" class="checkthis" /></td>
-									<td>Mohsin</td>
-									<td>Irshad</td>
-									<td>CB 106/107 Street # 11 Wah Cantt Islamabad Pakistan</td>
-									<td>isometric.mohsin@gmail.com</td>
-									<td>+923335586757</td>
-									<td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></p></td>
-									<td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
-								</tr>
-								<tr>
-									<td><input type="checkbox" class="checkthis" /></td>
-									<td>Mohsin</td>
-									<td>Irshad</td>
-									<td>CB 106/107 Street # 11 Wah Cantt Islamabad Pakistan</td>
-									<td>isometric.mohsin@gmail.com</td>
-									<td>+923335586757</td>
-									<td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></p></td>
-									<td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
-								</tr>
-								<tr>
-									<td><input type="checkbox" class="checkthis" /></td>
-									<td>Mohsin</td>
-									<td>Irshad</td>
-									<td>CB 106/107 Street # 11 Wah Cantt Islamabad Pakistan</td>
-									<td>isometric.mohsin@gmail.com</td>
-									<td>+923335586757</td>
-									<td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></p></td>
-									<td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
-								</tr>
-								<tr>
-									<td><input type="checkbox" class="checkthis" /></td>
-									<td>Mohsin</td>
-									<td>Irshad</td>
-									<td>CB 106/107 Street # 11 Wah Cantt Islamabad Pakistan</td>
-									<td>isometric.mohsin@gmail.com</td>
-									<td>+923335586757</td>
-									<td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></p></td>
-									<td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
-								</tr>
-								<tr>
-									<td><input type="checkbox" class="checkthis" /></td>
-									<td>Mohsin</td>
-									<td>Irshad</td>
-									<td>CB 106/107 Street # 11 Wah Cantt Islamabad Pakistan</td>
-									<td>isometric.mohsin@gmail.com</td>
-									<td>+923335586757</td>
-									<td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></p></td>
-									<td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
-								</tr>
+								<?php
+									foreach($users as $user)
+									{
+										print("<tr>");
+										print("<td><input type='checkbox' class='checkthis' /></td>");
+										print("<td>" . $user["last_name"] . "<td>");
+										print("<td>" . $user["first_name"] . "<td>");
+										print("<td>" . $user["email"] . "<td>");
+										print("<td>" . $user["major"] . "<td>");
+										print("<td>" . $user["graduation"] . "<td>");
+										print("<td><p data-placement='top' data-toggle='tooltip' title='Edit'><button class='btn btn-primary btn-xs' data-title='Edit' data-toggle='modal' data-target='#edit' ><span class='glyphicon glyphicon-pencil'></span></button></p></td>");
+										print("<td><p data-placement='top' data-toggle='tooltip' title='Delete'><button class='btn btn-danger btn-xs' data-title='Delete' data-toggle='modal' data-target='#delete' ><span class='glyphicon glyphicon-trash'></span></button></p></td>");
+										print("</tr>");
+									}
+
+								?>
     							</tbody>
 							</table>
 							<div class="clearfix"></div>
