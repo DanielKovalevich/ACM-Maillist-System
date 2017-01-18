@@ -85,11 +85,11 @@ if(isAppLoggedIn()){
 	<div class="container-fluid main-container">
 		<div class="col-md-2 sidebar">
 			<ul class="nav nav-pills nav-stacked">
-				<li class="active"><a href="#">Home</a></li>
+				<li class="active"><a href="http://psb.acm.org/maillist/secure.php">Home</a></li>
 				<li><a href="http://psb.acm.org/maillist/createmail.php">Create Email</a></li>
 				<li><a href="#">View Sent Emails</a></li>
 				<li><a href="#">Manage Members</a></li>
-				<li><a href="http://psb.acm.org/maillist/settings.php">Settings</a></li>
+				<li><a href="http://psb.acm.org/maillist/assets/settings_controller.php">Settings</a></li>
 			</ul>
 		</div>
 		<div class="col-md-10 content">
@@ -125,3 +125,4 @@ else {
 <?php
 }
 ?>
+

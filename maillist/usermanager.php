@@ -1,19 +1,11 @@
 <?php
 
 //Table view for registered users - ACM mailList
-//Written by Conrad Weiser - 11/30/2016
+//Written by Conrad Weiser and Daniel Kovalevich - 11/30/2016
+//Worked on by Daniel Kovalevich - 1/17/2017
 
-require_once('ulogin/config/all.inc.php');
-require_once('ulogin/main.inc.php');
-
-//Start a secure connection if one is not already running
-if (!sses_running()){
-  sses_start();
-}
-
-//Display protected content
-if(isAppLoggedIn()){
-	?>
+?>
+<!DOCTYPE html>
 
 <html>
   <head>
@@ -27,6 +19,9 @@ if(isAppLoggedIn()){
 
       <link href="css/bootstrap.min.css" rel="stylesheet">
       <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	  <script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
+	  <script src="js/table.js"></script>
+
 
       <!--Custom styles for this sheet!-->
       <link href="css/protected.css" rel="stylesheet">
@@ -65,11 +60,11 @@ if(isAppLoggedIn()){
 	<div class="container-fluid main-container">
 		<div class="col-md-2 sidebar">
 			<ul class="nav nav-pills nav-stacked">
-				<li><a href="#">Home</a></li>
-				<li><a href="#">Create Email</a></li>
+				<li><a href="http://psb.acm.org/maillist/secure.php">Home</a></li>
+				<li><a href="http://psb.acm.org/maillist/createmail.php">Create Email</a></li>
 				<li><a href="#">View Sent Emails</a></li>
-				<li class="active"><a href="#">Manage Members</a></li>
-				<li><a href="#">Settings</a></li>
+				<li class="active"><a href="http://psb.acm.org/maillist/assets/usermanager_controller.php">Manage Members</a></li>
+				<li><a href="http://psb.acm.org/maillist/assets/settings_controller.php">Settings</a></li>
 			</ul>
 		</div>
 		<div class="col-md-10 content">
@@ -79,14 +74,138 @@ if(isAppLoggedIn()){
                 </div>
                 <div class="panel-body">
                     <!-- Page contents for the tables here -->
+					<div class="row">
+        				<div class="table-responsive">
+							<table id="mytable" class="table table-bordred table-striped">
+								<thead>
+								<th><input type="checkbox" id="checkall" /></th>
+								<th>First Name</th>
+									<th>Last Name</th>
+									<th>Address</th>
+									<th>Email</th>
+									<th>Contact</th>
+									<th>Edit</th>
+									
+									<th>Delete</th>
+								</thead>
+								<tbody>
+								<tr>
+									<td><input type="checkbox" class="checkthis" /></td>
+									<td>Mohsin</td>
+									<td>Irshad</td>
+									<td>CB 106/107 Street # 11 Wah Cantt Islamabad Pakistan</td>
+									<td>isometric.mohsin@gmail.com</td>
+									<td>+923335586757</td>
+									<td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></p></td>
+									<td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
+								</tr>
+								<tr>
+									<td><input type="checkbox" class="checkthis" /></td>
+									<td>Mohsin</td>
+									<td>Irshad</td>
+									<td>CB 106/107 Street # 11 Wah Cantt Islamabad Pakistan</td>
+									<td>isometric.mohsin@gmail.com</td>
+									<td>+923335586757</td>
+									<td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></p></td>
+									<td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
+								</tr>
+								<tr>
+									<td><input type="checkbox" class="checkthis" /></td>
+									<td>Mohsin</td>
+									<td>Irshad</td>
+									<td>CB 106/107 Street # 11 Wah Cantt Islamabad Pakistan</td>
+									<td>isometric.mohsin@gmail.com</td>
+									<td>+923335586757</td>
+									<td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></p></td>
+									<td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
+								</tr>
+								<tr>
+									<td><input type="checkbox" class="checkthis" /></td>
+									<td>Mohsin</td>
+									<td>Irshad</td>
+									<td>CB 106/107 Street # 11 Wah Cantt Islamabad Pakistan</td>
+									<td>isometric.mohsin@gmail.com</td>
+									<td>+923335586757</td>
+									<td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></p></td>
+									<td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
+								</tr>
+								<tr>
+									<td><input type="checkbox" class="checkthis" /></td>
+									<td>Mohsin</td>
+									<td>Irshad</td>
+									<td>CB 106/107 Street # 11 Wah Cantt Islamabad Pakistan</td>
+									<td>isometric.mohsin@gmail.com</td>
+									<td>+923335586757</td>
+									<td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></p></td>
+									<td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
+								</tr>
+    							</tbody>
+							</table>
+							<div class="clearfix"></div>
+							<ul class="pagination pull-right">
+							<li class="disabled"><a href="#"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
+							<li class="active"><a href="#">1</a></li>
+							<li><a href="#">2</a></li>
+							<li><a href="#">3</a></li>
+							<li><a href="#">4</a></li>
+							<li><a href="#">5</a></li>
+							<li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+							</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+      				<div class="modal-dialog">
+    					<div class="modal-content">
+          					<div class="modal-header">
+        						<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+        						<h4 class="modal-title custom_align" id="Heading">Edit Your Detail</h4>
+      						</div>
+          					<div class="modal-body">
+          						<div class="form-group">
+        							<input class="form-control " type="text" placeholder="Mohsin">
+        						</div>
+        						<div class="form-group">
+        
+        							<input class="form-control " type="text" placeholder="Irshad">
+        						</div>
+        						<div class="form-group">
+        							<textarea rows="2" class="form-control" placeholder="CB 106/107 Street # 11 Wah Cantt Islamabad Pakistan"></textarea>
+        						</div>
+      						</div>
+          					<div class="modal-footer ">
+        						<button type="button" class="btn btn-warning btn-lg" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span> Update</button>
+      						</div>
+        				</div>
+  					</div>
+    			</div>
+    			<div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+      				<div class="modal-dialog">
+    					<div class="modal-content">
+          					<div class="modal-header">
+        						<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+        						<h4 class="modal-title custom_align" id="Heading">Delete this entry</h4>
+      						</div>
+          					<div class="modal-body">
+      							<div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span> Are you sure you want to delete this Record?</div>
+							</div>
+							<div class="modal-footer ">
+								<button type="button" class="btn btn-success" ><span class="glyphicon glyphicon-ok-sign"></span> Yes</button>
+								<button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
+							</div>
+						</div>
+					</div>
+				</div>
                     <!-- I'm thinking about using this! http://bootsnipp.com/snippets/featured/bootstrap-snipp-for-datatable !-->
-                </div>
+               	</div>
             </div>
 		</div>
 		<footer class="pull-left footer">
 			<p class="col-md-12">
 				<hr class="divider">
-				Bootsnip Copyright &COPY; 2015 Gravitano | Designed for Behrend ACM by Conrad Weiser</a>
+				Bootsnip Copyright &COPY; 2015 Gravitano | Designed for Behrend ACM by Conrad Weiser and Daniel Kovalevich</a>
 			</p>
 		</footer>
 	</div>
