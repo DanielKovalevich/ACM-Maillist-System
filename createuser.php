@@ -10,16 +10,6 @@ require_once "maillist/assets/PDO.inc.php";
 //Store the action variable. Check to see if the form has been submitted before running the registration
 $action = @$_POST['action'];
 
-//Combine the submitted names
-$name = '';
-
-if(isset($_POST['firstName']) && isset($_POST['lastName'])){
-
-	$name = $_POST['firstName'];
-	$name .=' ';
-	$name .= $_POST['lastName'];
-}
-
 //Combine the gratuation date to a proper year
 $grad_date = '';
 
@@ -35,9 +25,9 @@ $sql = new processMySql;
 //If there has been an action, add users to the database
 if($action == 'register'){
 	//Check that everything is set.
-	if(!empty($name) && isset($_POST['email']) && isset($_POST['major']) && !empty($grad_date))
+	if(isset($_POST['firstName']) && isset($_POST['lastName']) && isset($_POST['email']) && isset($_POST['major']) && !empty($grad_date))
 	{
-		$sql->processNewUser($name, $_POST['email'], $_POST['major'], $grad_date);
+		$sql->processNewUser($_POST['firstName'], $_POST['lastName'], $_POST['email'], $_POST['major'], $grad_date);
 		header("Location: http://psb.acm.org/thanks.html");
 		die();
 	}

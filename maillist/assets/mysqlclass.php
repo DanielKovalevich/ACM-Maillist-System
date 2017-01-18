@@ -20,13 +20,14 @@ class processMySQL
 		$stmt->execute();
 	}
 
-	function processNewUser($name,$email,$major,$gratuateDate)
+	function processNewUser($firstName,$lastName,$email,$major,$gratuateDate)
 	{
 		$db = new PDO(ML_PDO_CON_STRING, ML_PDO_USERNAME, ML_PDO_PASSWORD);
 
-		$stmt = $db->prepare("INSERT INTO users (name, email, major, gratuation) VALUES (:name, :email, :major, :gratuation)");
+		$stmt = $db->prepare("INSERT INTO users (first_name, last_name, email, major, gratuation) VALUES (:firstName, :lastName, :email, :major, :gratuation)");
 
-		$stmt->bindParam(':name', $name);
+		$stmt->bindParam(':firstName', $firstName);
+		$stmt->bindParam(':lastName', $lastName);
 		$stmt->bindParam(':email', $email);
 		$stmt->bindParam(':major', $major);
 		$stmt->bindParam(':gratuation', $gratuateDate);
@@ -65,7 +66,7 @@ class processMySQL
 
 			$db = new PDO(ML_PDO_CON_STRING, ML_PDO_USERNAME, ML_PDO_PASSWORD);
 	
-			$sth = $db->prepare("SELECT name FROM users WHERE major = :major");
+			$sth = $db->prepare("SELECT id FROM users WHERE major = :major");
 			$sth->bindValue(':major', $major, PDO::PARAM_STR);
 	
 			$sth->execute();
