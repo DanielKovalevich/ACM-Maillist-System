@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    $('#mytable').DataTable();
     $("#mytable #checkall").click(function () {
             if ($("#mytable #checkall").is(':checked')) {
                 $("#mytable input[type=checkbox]").each(function () {
